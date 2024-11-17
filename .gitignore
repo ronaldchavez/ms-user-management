@@ -1,0 +1,41 @@
+vendor/
+node_modules/
+npm-debug.log
+
+.idea
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+storage/*.key
+.env.*.php
+.env.php
+rest_lumen/.env
+.env.*
+Homestead.yaml
+Homestead.json
+
+# Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
+.rocketeer/
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.DS_Store
+*.phar
+rest_lumen/.DS_Store
+rest_lumen/.DS_Store
+.vscode/launch.json
+rest_lumen/php_errors.log
+mysql-data/*
+mysql-data/mysql.sock

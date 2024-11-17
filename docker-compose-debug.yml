@@ -1,0 +1,41 @@
+
+services:
+  mysqltest:
+    image: mysql:9.0.1-oracle
+    container_name: mysqltest-ms-user-management
+    restart: no
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      TZ: America/Caracas
+    networks:
+      - management
+  laravel:
+    container_name: ms-user-management
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - PHP_IDE_CONFIG="serverName=ms-user-management"
+    env_file:
+      - ./docker/api.env
+    ports:
+      - "8059:8059"
+    depends_on:
+      - mysqltest
+    links:
+      - mysqltest
+    volumes:
+      - ./laravel:/var/www/app
+    working_dir: /var/www/app
+    entrypoint: /bin/bash -c 'if [ -d "/var/www/app/vendor" ]; then php artisan octane:start --host=0.0.0.0 --port=8059 --workers=1 --watch; else npm install && composer install ; php artisan octane:start --host=0.0.0.0 --port=8059 --workers=1 --watch; fi'
+    networks:
+      - management
+networks:
+  management:
+    driver: bridge
+    external: true
