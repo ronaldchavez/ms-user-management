@@ -117,8 +117,11 @@ Levantar servidor de desarrollo
 ```sh
 php -S localhost:8059 -t public/
 ```
+### Paso 4: Importar base de datos management
 
-### Paso 4: Comprobar Instalación
+Se encuentra en la raiz del proyecto
+
+### Paso 5: Comprobar Instalación
 
 _Para comprobar que la instalación se realizo de manera correcta ingresa al proyecto a través del siguiente enlace [http://localhost:8059/ping](http://localhost:8059/ping) y veras un mensaje de notificación._
 
