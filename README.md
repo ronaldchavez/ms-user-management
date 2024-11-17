@@ -217,7 +217,29 @@ DB_PASSWORD='root'
 {
     "success": true,
     "message": "Users consulted successfully",
-    "data": []
+    "data": [{
+        "name": "test",
+        "email": "test@gmail.com",
+        "password": "12345678",
+        "birth_date": "1998-05-07",
+        "gender": "male",
+        "dni": "2540225111",
+        "country": "Venezuela",
+        "phone": "4155112541",
+        "address": "Yaracuy",
+        "role": "admin"
+    },{
+        "name": "test",
+        "email": "test@gmail.com",
+        "password": "12345678",
+        "birth_date": "1998-05-07",
+        "gender": "male",
+        "dni": "2540225111",
+        "country": "Venezuela",
+        "phone": "4155112541",
+        "address": "Yaracuy",
+        "role": "admin"
+    }]
 }
 ```
 - **Respuesta 403:**
@@ -239,7 +261,18 @@ DB_PASSWORD='root'
 {
     "success": true,
     "message": "User consulted successfully",
-    "data": []
+    "data": {
+    "name": "test",
+    "email": "test@gmail.com",
+    "password": "12345678",
+    "birth_date": "1998-05-07",
+    "gender": "male",
+    "dni": "2540225111",
+    "country": "Venezuela",
+    "phone": "4155112541",
+    "address": "Yaracuy",
+    "role": "admin"
+    }
 }
 ```
 - **Respuesta 403:**
