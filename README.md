@@ -120,21 +120,7 @@ php -S localhost:8059 -t public/
 
 ### Paso 4: Comprobar Instalación
 
-_Para comprobar que la instalación se realizo de manera correcta ingresa al proyecto a través del siguiente enlace [http://localhost:8072/ping](http://localhost:8059/ping) y veras un mensaje de notificación._
-
-## Configuración XDebug ⚙️
-### PhpStorm
-Abrir la configuración y crear un servidor con los siguientes parámetros `File -> Settings -> PHP -> Servers`
-
-![server](https://multimedia-epayco-test.s3.amazonaws.com/docs/phpstorm_conex.png)
-
-Agregar una nueva configuración para debug en `Run -> Edit configurations -> PHP Remote Debug`
-
-![remote debug](https://multimedia-epayco-test.s3.amazonaws.com/docs/phpstorm_debug.png)
-
-Selecciona la nueva configuración en el panel debug
-
-![panel](https://multimedia-epayco-test.s3.amazonaws.com/docs/phpstorm_panel.jpg)
+_Para comprobar que la instalación se realizo de manera correcta ingresa al proyecto a través del siguiente enlace [http://localhost:8059/ping](http://localhost:8059/ping) y veras un mensaje de notificación._
 
 ### VSCode
 Instala la extension [PHP Debug](https://github.com/felixfbecker/vscode-php-debug) y modifica el archivo PHP Debug ```launch.json```.
@@ -155,6 +141,18 @@ Instala la extension [PHP Debug](https://github.com/felixfbecker/vscode-php-debu
     ]
 }
 ```
+#### ENV
+APP_NAME=ms-user-management
+APP_ENV=local
+APP_DEBUG=true
+DB_CONNECTION=mysql
+DB_HOST=mysqltest-ms-user-management
+DB_HOST_READ=mysqltest-ms-user-management
+DB_PORT=3306
+DB_DATABASE=management
+DB_USERNAME=root
+DB_PASSWORD='root'
+
 ## Uso
 
 ### Endpoints Principales
@@ -196,9 +194,8 @@ Instala la extension [PHP Debug](https://github.com/felixfbecker/vscode-php-debu
 - **Body:**
 
 ```Authorization Bearer Token
-{
-    "2|NknGu1fRCKQRxI3M1JTDsL23MLx1iWLfDeVSi4KZ5a21fa77"
-}
+"2|NknGu1fRCKQRxI3M1JTDsL23MLx1iWLfDeVSi4KZ5a21fa77"
+
 ```
 
 - **Respuesta 200:**
@@ -281,7 +278,19 @@ Instala la extension [PHP Debug](https://github.com/felixfbecker/vscode-php-debu
 {
     "success": true,
     "message": "User created successfully",
-    "data": []
+    "data": [{
+            "name": "test",
+            "email": "test@gmail.com",
+            "password": "12345678",
+            "birth_date": "1998-05-07",
+            "gender": "male",
+            "dni": "2540225111",
+            "country": "Venezuela",
+            "phone": "4155112541",
+            "address": "Yaracuy",
+            "role": "admin"
+        }
+    ]
 }
 ```
 - **Respuesta 403:**
@@ -330,7 +339,18 @@ Instala la extension [PHP Debug](https://github.com/felixfbecker/vscode-php-debu
 {
     "success": true,
     "message": "User updated successfully",
-    "data": []
+    "data": [{
+    "name": "test test",
+    "email": "test@test.com",
+    "password": "12345678",
+    "birth_date": "1998-05-07",
+    "gender": "male",
+    "dni": "25402251111",
+    "country": "Venezuela",
+    "phone": "4155112541",
+    "address": "Yaracuy",
+    "role": "admin"
+    }]
 }
 ```
 - **Respuesta 403:**
