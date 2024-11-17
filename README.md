@@ -155,6 +155,329 @@ Instala la extension [PHP Debug](https://github.com/felixfbecker/vscode-php-debu
     ]
 }
 ```
+## Uso
+
+### Endpoints Principales
+
+####  Login
+**POST** `/api/login`
+
+- **Body:**
+
+```json
+{
+    "email": "admin@admin.com",
+    "password": "admin"
+}
+```
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Token generated successfully",
+    "data": "2|NknGu1fRCKQRxI3M1JTDsL23MLx1iWLfDeVSi4KZ5a21fa77"
+}
+```
+- **Respuesta 400:**
+
+```json
+{
+    "success": false,
+    "message": "Invalid credentials",
+    "data": []
+}
+```
+
+####  Logout
+**POST** `/api/logout`
+
+- **Body:**
+
+```Authorization Bearer Token
+{
+    "2|NknGu1fRCKQRxI3M1JTDsL23MLx1iWLfDeVSi4KZ5a21fa77"
+}
+```
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Logged out successfully",
+    "data": []
+}
+```
+
+#### Gets list of all users
+**GET** `/api/users`
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Users consulted successfully",
+    "data": []
+}
+```
+- **Respuesta 403:**
+
+```json
+{
+    "success": false,
+    "message": "unauthorized",
+    "data": []
+}
+```
+
+#### Get user
+**GET** `/api/users/1`
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "User consulted successfully",
+    "data": []
+}
+```
+- **Respuesta 403:**
+
+```json
+{
+    "success": false,
+    "message": "unauthorized",
+    "data": []
+}
+```
+
+#### Create user
+**POST** `/api/users`
+
+- **Body:**
+
+```json
+{
+    "name": "test",
+    "email": "test@gmail.com",
+    "password": "12345678",
+    "birth_date": "1998-05-07",
+    "gender": "male",
+    "dni": "2540225111",
+    "country": "Venezuela",
+    "phone": "4155112541",
+    "address": "Yaracuy",
+    "role": "admin"
+}
+```
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "User created successfully",
+    "data": []
+}
+```
+- **Respuesta 403:**
+
+```json
+{
+    "success": false,
+    "message": "unauthorized",
+    "data": []
+}
+```
+
+- **Respuesta 400:**
+
+```json
+{
+    "success": false,
+    "message": "Role not found",
+    "data": []
+}
+```
+
+#### Update user
+**PUT** `/api/users/1`
+
+- **Body:**
+
+```json
+{
+    "name": "test test",
+    "email": "test@test.com",
+    "password": "12345678",
+    "birth_date": "1998-05-07",
+    "gender": "male",
+    "dni": "25402251111",
+    "country": "Venezuela",
+    "phone": "4155112541",
+    "address": "Yaracuy",
+    "role": "admin"
+}
+```
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "User updated successfully",
+    "data": []
+}
+```
+- **Respuesta 403:**
+
+```json
+{
+    "success": false,
+    "message": "unauthorized",
+    "data": []
+}
+```
+
+- **Respuesta 400:**
+
+```json
+{
+    "success": false,
+    "message": "Role not found",
+    "data": []
+}
+```
+
+#### Delete user
+**DELETE** `/api/users/1`
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "User deleted successfully",
+    "data": []
+}
+```
+- **Respuesta 403:**
+
+```json
+{
+    "success": false,
+    "message": "unauthorized",
+    "data": []
+}
+```
+
+#### Gets list of all roles
+**GET** `/api/roles`
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Roles consulted successfully",
+    "data": []
+}
+```
+
+#### Get role
+**GET** `/api/roles/1`
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Role consulted successfully",
+    "data": []
+}
+```
+
+- **Respuesta 400:**
+
+```json
+{
+    "success": false,
+    "message": "Role not found",
+    "data": []
+}
+```
+
+#### Create role
+**POST** `/api/roles`
+
+- **Body:**
+
+```json
+{
+    "name": "create",
+    "permissions": ["create_user"]
+}
+```
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Role created successfully",
+    "data": []
+}
+```
+
+#### Update role
+**PUT** `/api/roles/1`
+
+- **Body:**
+
+```json
+{
+    "permissions": ["view_user", "create_user"]
+}
+```
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Role updated successfully",
+    "data": []
+}
+```
+
+#### Delete role
+**DELETE** `/api/roles/1`
+
+- **Respuesta 200:**
+
+```json
+{
+    "success": true,
+    "message": "Role deleted successfully",
+    "data": []
+}
+```
+- **Respuesta 400:**
+
+```json
+{
+    "success": false,
+    "message": "The role cannot be deleted because it has associated users",
+    "data": []
+}
+```
+
+
+
 ### Generador
 php artisan new:service "servicio/metodo"
 

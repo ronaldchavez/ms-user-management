@@ -10,11 +10,7 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        return response()->json([
-            'success' => false,
-            'message' => 'Role not found',
-            'data' => []
-        ], 400);
+
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string',
@@ -23,10 +19,20 @@ class AuthController extends Controller
         $user = User::where('email', $credentials['email'])->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 400);
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid credentials',
+                'data' => []
+            ], 400);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Token generated successfully',
+            'data' => $token
+        ], 200);
 
         return response()->json(['token' => $token]);
     }
@@ -35,6 +41,11 @@ class AuthController extends Controller
     {
         $request->user()->tokens()->delete();
 
-        return response()->json(['message' => 'Logged out successfully']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Logged out successfully',
+            'data' => []
+        ], 200);
+
     }
 }

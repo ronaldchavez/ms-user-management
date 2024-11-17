@@ -38,7 +38,8 @@ class RoleController extends Controller
         if (!$role) {
             return response()->json([
                 'success' => false,
-                'message' => 'Role not found'
+                'message' => 'Role not found',
+                'data' => []
             ], 400);
         }
 
@@ -83,7 +84,7 @@ class RoleController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Permissions updated successfully',
+            'message' => 'Role updated successfully',
             'data' => $role->permissions
         ], 200);
     }
@@ -91,10 +92,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $role = Role::findOrFail($id);
-        return response()->json([
-            'success' => $role->users()->exists(),
-            'message' => 'Role deleted successfully.',
-        ]);
+
         if ($role->users()->exists()) {
             return response()->json([
                 'success' => false,
@@ -107,7 +105,9 @@ class RoleController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Role deleted successfully.',
-        ]);
+            'data' => []
+        ], 200);
+
     }
 
 }
